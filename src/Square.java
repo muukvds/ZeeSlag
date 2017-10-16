@@ -54,11 +54,7 @@ public class Square {
 
     public boolean hasShip() {
         boolean hasShip;
-        if (ship == null) {
-            hasShip = false;
-        } else {
-            hasShip = true;
-        }
+        hasShip = ship != null;
 
         return hasShip;
     }
