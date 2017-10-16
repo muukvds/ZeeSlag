@@ -12,12 +12,12 @@ public class SeaBattle {
 
     }
 
-    public void play() {
+    private void play() {
         //if one player make 1 player
         if (playerCount == 1) {
             trainingGame();
         } else if (playerCount == 2) {
-            game();
+            game(player1,player2);
         }
     }
 
@@ -42,19 +42,18 @@ public class SeaBattle {
         }
 
         if (answer.equals("ja")) {
-            play();
+            game(player2,player2);
         } else {
             System.out.println("Bedankt voor het spelen van het spelletje Zeeslag.\nHopelijk tot een volgende keer !");
         }
     }
 
-    private void game() {
-        //todo 2 players make while loop until one player wins, switch from player after player turn
+    private void game(Player p1, Player p2) {
         boolean playWon = false;
         while (!playWon) {
-            playWon = playTurn(player1, player2);
+            playWon = playTurn(p1, p2);
             if (!playWon) {
-                playWon = playTurn(player2, player1);
+                playWon = playTurn(p2, p1);
             }
         }
         playAgain();
