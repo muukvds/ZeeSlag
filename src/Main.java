@@ -22,7 +22,12 @@ public class Main {
                 if (playerCount == 1 || playerCount == 2) {
                     playersSet = true;
                 }
+                else
+                {
+                    System.out.println("*** Dat is geen geldig aantal spelers! ***");
+                }
             } catch (Exception e) {
+                System.out.println("*** Dat is geen geldig aantal spelers! ***");
             }
         }
 
