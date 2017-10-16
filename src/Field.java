@@ -15,9 +15,9 @@ public class Field {
             for (char letter = 'A'; letter <= 'J'; letter++) {
                 String s = new String(new char[]{letter});
                 fieldSquares.put(letter + "" + i, new Square());
-                addShipsToField();
             }
         }
+        addShipsToField();
     }
 
     private void addShipsToField() {
@@ -31,36 +31,38 @@ public class Field {
     private void generateCoordinates(Ship ship) {
 
         boolean coordinatsAvalible = false;
+        Coordinates coordinates = new Coordinates();
         while (!coordinatsAvalible) {
-
 
             Random random = new Random();
             int X = random.nextInt(9);
-
             int Y = random.nextInt(10) + 1;
-
+            int direction = random.nextInt(4) + 1;
 
             char letter = 'A';
             letter += X;
-            String start = letter + "" + Y;
 
-            Random randomDirection = new Random();
-            int direction = randomDirection.nextInt(4) + 1;
-
-            ArrayList<String> coordinates = getcoordinates(letter, Y, direction, ship.getLength());
+            coordinates = getCoordinates(letter, Y, direction, ship.getLength());
             coordinatsAvalible = checkCoordinatesFree(coordinates);
-            if (coordinatsAvalible) {
-                addShipToCoordinates(coordinates, ship);
-            }
         }
+        addShipToCoordinates(coordinates.getCoordinates(), ship);
     }
 
-    private ArrayList<String> getcoordinates(char X, int Y, int direction, int length) {
-        ArrayList<String> coordinates = new ArrayList<>();
+    private Coordinates getCoordinates(char X, int Y, int direction, int length) {
+        ArrayList<String> mainCoordinates = new ArrayList<>();
+        ArrayList<String> surroundingCoordinates = new ArrayList<>();
 
-        coordinates.add(X + "" + Y);
+        mainCoordinates.add(X + "" + Y);
+        surroundingCoordinates.add(X + "" + (Y+1));
+        X++;
+        surroundingCoordinates.add(X + "" + Y);
+        X--;
+        surroundingCoordinates.add(X + "" + (Y-1));
+        X--;
+        surroundingCoordinates.add(X + "" + Y);
+        X++;
 
-        for (int i = 0; i < length; i++) {
+        for (int i = 1; i < length; i++) {
 
             switch (direction) {
                 // 1 UP
@@ -83,19 +85,45 @@ public class Field {
                     X--;
                     break;
             }
-            coordinates.add(X + "" + Y);
+            mainCoordinates.add(X + "" + Y);
+            surroundingCoordinates.add(X + "" + (Y+1));
+            X++;
+            surroundingCoordinates.add(X + "" + Y);
+            X--;
+            surroundingCoordinates.add(X + "" + (Y-1));
+            X--;
+            surroundingCoordinates.add(X + "" + Y);
+            X++;
+
             System.out.println(X + "" + Y);
         }
+
+        Coordinates coordinates = new Coordinates();
+        coordinates.setCoordinates(mainCoordinates);
+        coordinates.setSurroundingCoordinates(surroundingCoordinates);
 
         return coordinates;
     }
 
-    private boolean checkCoordinatesFree(ArrayList<String> coordinates) {
+    private boolean checkCoordinatesFree(Coordinates coordinates) {
         boolean isFree = true;
 
-        for (String coordinate : coordinates) {
+        for (String coordinate : coordinates.getCoordinates()) {
             Square square = fieldSquares.get(coordinate);
-            isFree = square != null && square.hasShip();
+
+            if (square == null || square.hasShip()) {
+                isFree = false;
+            }
+        }
+
+        for (String coordinate : coordinates.getSurroundingCoordinates()) {
+            Square square = fieldSquares.get(coordinate);
+
+            if (square != null) {
+                if (square.hasShip()) {
+                    isFree = false;
+                }
+            }
         }
 
         return isFree;
@@ -113,7 +141,9 @@ public class Field {
 
     public void shotAt(String coordinates) {
         Square square = fieldSquares.get(coordinates);
-        square.setShotAt();
+        if (square != null) {
+            square.setShotAt();
+        }
     }
 
     public void printField() {
@@ -131,5 +161,4 @@ public class Field {
         }
         System.out.println("   ABCDEFGHIJ");
     }
-
 }
