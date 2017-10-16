@@ -42,7 +42,13 @@ public class Ship {
         hits++;
         if (hits >= length) {
             sunk = true;
+            printSunkenShip();
         }
+    }
+
+    private void printSunkenShip()
+    {
+        System.out.println("Sterker nog, dit schip van het type "+this.type+" is nu gezonken!");
     }
 
     public String getInitial() {

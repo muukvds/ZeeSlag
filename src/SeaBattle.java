@@ -22,12 +22,11 @@ public class SeaBattle {
     }
 
     private void trainingGame() {
-        boolean playerLost = false;
-        while (!playerLost) {
-            playerLost = playTurn(player1, player2);
+        boolean playWon = false;
+        while (!playWon) {
+            playWon = playTurn(player1, player2);
         }
         playAgain();
-
     }
 
     private void playAgain() {
@@ -45,17 +44,17 @@ public class SeaBattle {
         if (answer.equals("ja")) {
             play();
         } else {
-            System.out.println("Bedankt voor het spelen van het spelletje Zeeslag.\n Hopelijk tot een volgende keer !");
+            System.out.println("Bedankt voor het spelen van het spelletje Zeeslag.\nHopelijk tot een volgende keer !");
         }
     }
 
     private void game() {
-        //2 players make while loop until one player wins, switch from player after player turn
-        boolean playerLost = false;
-        while (!playerLost) {
-            playerLost = playTurn(player1, player2);
-            if (!playerLost) {
-                playerLost = playTurn(player2, player1);
+        //todo 2 players make while loop until one player wins, switch from player after player turn
+        boolean playWon = false;
+        while (!playWon) {
+            playWon = playTurn(player1, player2);
+            if (!playWon) {
+                playWon = playTurn(player2, player1);
             }
         }
         playAgain();
@@ -69,14 +68,17 @@ public class SeaBattle {
 
         playerEnemy.showField();
 
+        //todo make sure you cant set invalid coordinates
         System.out.print(playerTurn.getName() + ", geef de locatie die je wilt beschieten:");
         String coordinate = Main.IN.nextLine();
         playerEnemy.shotAt(coordinate);
+
         if (playerEnemy.isLost()) {
             playWon = true;
             System.out.println("Bravo " + playerTurn.getName() + "+, je hebt alle schepen van je tegenstander tot zinken gebracht!");
             System.out.println("Je bent de trotse winnaar van dit spel!");
         }
+
         return playWon;
     }
 

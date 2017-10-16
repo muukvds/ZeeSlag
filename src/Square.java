@@ -10,6 +10,10 @@ public class Square {
         this.ship = ship;
     }
 
+    public boolean isShotAt() {
+        return shotAt;
+    }
+
     public void setShotAt() {
         this.shotAt = true;
         if (ship != null) {
@@ -47,14 +51,24 @@ public class Square {
         return symbol;
     }
 
-    public void setShip(Ship ship)
-    {
+    public boolean isShipSunk() {
+        boolean isShipSunk = false;
+        if (ship != null) {
+            isShipSunk = ship.isSunk();
+        }
+
+        return isShipSunk;
+    }
+
+    public void setShip(Ship ship) {
         this.ship = ship;
     }
 
     public boolean hasShip() {
-        boolean hasShip;
-        hasShip = ship != null;
+        boolean hasShip = true;
+        if (ship == null) {
+            hasShip = false;
+        }
 
         return hasShip;
     }

@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Coordinates {
 
-    ArrayList<String> surroundingCoordinates;
-    ArrayList<String> Coordinates;
+    private ArrayList<String> surroundingCoordinates;
+    private ArrayList<String> Coordinates;
 
     public ArrayList<String> getSurroundingCoordinates() {
         return surroundingCoordinates;
