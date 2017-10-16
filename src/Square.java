@@ -24,7 +24,7 @@ public class Square {
             if (ship == null) {
                 symbol = "~";
             } else {
-                if (ship.isDied()) {
+                if (ship.isSunk()) {
                     symbol = ship.getInitial();
                 } else {
                     symbol = "*";
