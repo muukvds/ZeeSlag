@@ -1,18 +1,37 @@
 public class Player {
 
     private Field playField;
+    private String name;
+    private boolean lost = false;
 
-    public Player() {
+    public Player(String name) {
 
+        this.name = name;
+        makeField();
     }
 
-    public void shotAt(String coordinates)
-    {
-        //check if missed hit or hit and destroyed
-
-        //print if missed hit or hit and destroyed
+    public String getName() {
+        return name;
     }
 
+    public boolean isLost() {
+        return lost;
+    }
 
+    public void showField() {
+        playField.printField();
+    }
 
+    public void shotAt(String coordinates) {
+        playField.shootAt(coordinates);
+        checkIfLost();
+    }
+
+    private void makeField() {
+        playField = new Field();
+    }
+
+    private void checkIfLost() {
+        lost = playField.allShipsSunk();
+    }
 }
