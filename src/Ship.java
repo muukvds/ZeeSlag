@@ -24,7 +24,10 @@ public class Ship {
                 length = 2;
                 break;
         }
+    }
 
+    public String getType() {
+        return type;
     }
 
     public boolean isSunk() {
