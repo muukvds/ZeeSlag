@@ -12,22 +12,35 @@ public class Square {
 
     public void setShotAt() {
         this.shotAt = true;
+        if (ship != null) {
+            System.out.println("Bravo, je hebt een schip geraakt.");
+            ship.hit();
+        } else {
+            System.out.println("Helaas, dat was een misser.");
+        }
     }
 
     public String getSymbol() {
         String symbol;
-
-        if (!shotAt) {
-            symbol = ".";
-        } else {
-
+        if (Main.CHEAT) {
             if (ship == null) {
                 symbol = "~";
             } else {
-                if (ship.isSunk()) {
-                    symbol = ship.getInitial();
+                symbol = ship.getInitial();
+            }
+        } else {
+            if (!shotAt) {
+                symbol = ".";
+            } else {
+
+                if (ship == null) {
+                    symbol = "~";
                 } else {
-                    symbol = "*";
+                    if (ship.isSunk()) {
+                        symbol = ship.getInitial();
+                    } else {
+                        symbol = "*";
+                    }
                 }
             }
         }
