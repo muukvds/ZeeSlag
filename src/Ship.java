@@ -20,4 +20,9 @@ public class Ship {
             died = true;
         }
     }
+
+    public String getInitial()
+    {
+        return type.substring(0, 1);
+    }
 }
