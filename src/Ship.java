@@ -3,26 +3,42 @@ public class Ship {
     private String type;
     private int length;
     private int hits = 0;
-    private boolean died = false;
+    private boolean sunk = false;
 
-    public Ship(String type, int length) {
+    public Ship(String type) {
         this.type = type;
-        this.length = length;
+        switch (type) {
+            case "Vliegdekschip":
+                length = 5;
+                break;
+            case "Slagschip":
+                length = 4;
+                break;
+            case "Onderzeeër":
+                length = 3;
+                break;
+            case "Torpedobootjager":
+                length = 3;
+                break;
+            case "Patrouilleboot":
+                length = 2;
+                break;
+        }
+
     }
 
-    public boolean isDied() {
-        return died;
+    public boolean isSunk() {
+        return sunk;
     }
 
     public void hit() {
         hits++;
         if (hits >= length) {
-            died = true;
+            sunk = true;
         }
     }
 
-    public String getInitial()
-    {
+    public String getInitial() {
         return type.substring(0, 1);
     }
 }
