@@ -26,6 +26,10 @@ public class Ship {
         }
     }
 
+    public int getLength() {
+        return length;
+    }
+
     public String getType() {
         return type;
     }
