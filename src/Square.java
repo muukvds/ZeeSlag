@@ -46,4 +46,20 @@ public class Square {
         }
         return symbol;
     }
+
+    public void setShip(Ship ship)
+    {
+        this.ship = ship;
+    }
+
+    public boolean hasShip() {
+        boolean hasShip;
+        if (ship == null) {
+            hasShip = false;
+        } else {
+            hasShip = true;
+        }
+
+        return hasShip;
+    }
 }
