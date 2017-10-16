@@ -14,7 +14,7 @@ public class Square {
         this.shotAt = true;
     }
 
-    public String print() {
+    public String getSymbol() {
         String symbol;
 
         if (!shotAt) {
