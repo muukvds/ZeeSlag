@@ -5,19 +5,19 @@ import java.util.Random;
 public class Field {
 
     private HashMap<String, Square> fieldSquares = new HashMap<>();
+    private int shipsDestroyed = 0;
 
     public Field() {
         createSquares();
+        addShipsToField();
     }
 
     private void createSquares() {
         for (int i = 1; i <= 10; i++) {
             for (char letter = 'A'; letter <= 'J'; letter++) {
-                String s = new String(new char[]{letter});
                 fieldSquares.put(letter + "" + i, new Square());
             }
         }
-        addShipsToField();
     }
 
     private void addShipsToField() {
@@ -53,11 +53,11 @@ public class Field {
         ArrayList<String> surroundingCoordinates = new ArrayList<>();
 
         mainCoordinates.add(X + "" + Y);
-        surroundingCoordinates.add(X + "" + (Y+1));
+        surroundingCoordinates.add(X + "" + (Y + 1));
         X++;
         surroundingCoordinates.add(X + "" + Y);
         X--;
-        surroundingCoordinates.add(X + "" + (Y-1));
+        surroundingCoordinates.add(X + "" + (Y - 1));
         X--;
         surroundingCoordinates.add(X + "" + Y);
         X++;
@@ -86,11 +86,11 @@ public class Field {
                     break;
             }
             mainCoordinates.add(X + "" + Y);
-            surroundingCoordinates.add(X + "" + (Y+1));
+            surroundingCoordinates.add(X + "" + (Y + 1));
             X++;
             surroundingCoordinates.add(X + "" + Y);
             X--;
-            surroundingCoordinates.add(X + "" + (Y-1));
+            surroundingCoordinates.add(X + "" + (Y - 1));
             X--;
             surroundingCoordinates.add(X + "" + Y);
             X++;
@@ -125,7 +125,6 @@ public class Field {
                 }
             }
         }
-
         return isFree;
     }
 
@@ -138,11 +137,15 @@ public class Field {
         }
     }
 
-
-    public void shotAt(String coordinates) {
+    public void shootAt(String coordinates) {
         Square square = fieldSquares.get(coordinates);
         if (square != null) {
-            square.setShotAt();
+            if (!square.isShotAt()) {
+                square.setShotAt();
+                if (square.isShipSunk()) {
+                    shipsDestroyed++;
+                }
+            }
         }
     }
 
@@ -160,5 +163,20 @@ public class Field {
             System.out.println();
         }
         System.out.println("   ABCDEFGHIJ");
+    }
+
+    public boolean allShipsSunk() {
+        boolean allShipsSunk = false;
+        if (Main.CHEAT) {
+            if (shipsDestroyed >= 1) {
+                allShipsSunk = true;
+                System.out.println("*** Vanwege de cheat mode is het spel nu al afgelopen ***");
+            }
+        } else {
+            if (shipsDestroyed == 5) {
+                allShipsSunk = true;
+            }
+        }
+        return allShipsSunk;
     }
 }
