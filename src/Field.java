@@ -31,7 +31,7 @@ public class Field {
     private void generateCoordinates(Ship ship) {
 
         boolean coordinatsAvalible = false;
-        Coordinates coordinates = new Coordinates();
+        Coordinates coordinates = null;
         while (!coordinatsAvalible) {
 
             Random random = new Random();
@@ -95,11 +95,7 @@ public class Field {
             surroundingCoordinates.add(X + "" + Y);
             X++;
         }
-
-        Coordinates coordinates = new Coordinates();
-        coordinates.setCoordinates(mainCoordinates);
-        coordinates.setSurroundingCoordinates(surroundingCoordinates);
-
+        Coordinates coordinates = new Coordinates(mainCoordinates,surroundingCoordinates);
         return coordinates;
     }
 

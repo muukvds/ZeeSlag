@@ -2,22 +2,21 @@ import java.util.ArrayList;
 
 public class Coordinates {
 
-    private ArrayList<String> surroundingCoordinates;
     private ArrayList<String> Coordinates;
+    private ArrayList<String> surroundingCoordinates;
 
-    public ArrayList<String> getSurroundingCoordinates() {
-        return surroundingCoordinates;
-    }
-
-    public void setSurroundingCoordinates(ArrayList<String> surroundingCoordinates) {
+    public Coordinates(ArrayList<String> coordinates, ArrayList<String> surroundingCoordinates) {
         this.surroundingCoordinates = surroundingCoordinates;
+        Coordinates = coordinates;
     }
 
     public ArrayList<String> getCoordinates() {
         return Coordinates;
     }
 
-    public void setCoordinates(ArrayList<String> coordinates) {
-        Coordinates = coordinates;
+    public ArrayList<String> getSurroundingCoordinates() {
+        return surroundingCoordinates;
     }
+
+
 }
