@@ -5,7 +5,6 @@ public class Player {
     private boolean lost = false;
 
     public Player(String name) {
-
         this.name = name;
         makeField();
     }
@@ -19,7 +18,15 @@ public class Player {
     }
 
     public void showField() {
-        playField.printField();
+
+        playField.printField(false);
+
+        if(Main.CHEAT)
+        {
+            System.out.println();
+            playField.printField(true);
+        }
+
     }
 
     public void shotAt(String coordinates) {

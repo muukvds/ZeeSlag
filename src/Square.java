@@ -24,9 +24,9 @@ public class Square {
         }
     }
 
-    public String getSymbol() {
+    public String getSymbol(boolean cheat) {
         String symbol;
-        if (Main.CHEAT) {
+        if (cheat) {
             if (ship == null) {
                 symbol = "~";
             } else {

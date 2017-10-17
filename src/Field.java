@@ -94,8 +94,6 @@ public class Field {
             X--;
             surroundingCoordinates.add(X + "" + Y);
             X++;
-
-            System.out.println(X + "" + Y);
         }
 
         Coordinates coordinates = new Coordinates();
@@ -149,7 +147,7 @@ public class Field {
         }
     }
 
-    public void printField() {
+    public void printField(boolean cheat) {
         for (int row = 10; row > 0; row--) {
             if (row != 10) {
                 System.out.print(" " + row + " ");
@@ -158,7 +156,7 @@ public class Field {
             }
 
             for (char column = 'A'; column <= 'J'; column++) {
-                System.out.print(fieldSquares.get(((column + "" + row))).getSymbol());
+                System.out.print(fieldSquares.get(((column + "" + row))).getSymbol(cheat));
             }
             System.out.println();
         }
