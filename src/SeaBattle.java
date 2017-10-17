@@ -2,7 +2,7 @@ public class SeaBattle {
 
     private Player player1;
     private Player player2;
-
+    private boolean player1Started;
     private int playerCount;
 
     public SeaBattle(int playerCount) {
@@ -17,7 +17,8 @@ public class SeaBattle {
         if (playerCount == 1) {
             trainingGame();
         } else if (playerCount == 2) {
-            game(player1,player2);
+            player1Started = true;
+            game(player1, player2);
         }
     }
 
@@ -42,7 +43,21 @@ public class SeaBattle {
         }
 
         if (answer.equals("ja")) {
-            game(player2,player2);
+
+            player1 = new Player(player1.getName());
+            player2 = new Player(player2.getName());
+
+            if (playerCount == 1) {
+                trainingGame();
+            } else if (playerCount == 2) {
+                //make sure starting player switches if play again
+                if (player1Started) {
+                    game(player2, player1);
+                    player1Started = false;
+                } else {
+                    game(player1, player2);
+                }
+            }
         } else {
             System.out.println("Bedankt voor het spelen van het spelletje Zeeslag.\nHopelijk tot een volgende keer !");
         }
@@ -62,12 +77,12 @@ public class SeaBattle {
     private Boolean playTurn(Player playerTurn, Player playerEnemy) {
         boolean playWon = false;
         //pays one turn for one player
-        System.out.println(" *** Aan de beurt: "+playerTurn.getName()+" ***");
+        System.out.println(" *** Aan de beurt: " + playerTurn.getName() + " ***");
         System.out.println();
 
         playerEnemy.showField();
 
-        //todo make sure you cant set invalid coordinates
+        //todo make sure you cant set invalid coordinates and give message if already shot
         System.out.print(playerTurn.getName() + ", geef de locatie die je wilt beschieten:");
         String coordinate = Main.IN.nextLine();
         playerEnemy.shotAt(coordinate);
