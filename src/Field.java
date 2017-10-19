@@ -30,9 +30,9 @@ public class Field {
 
     private void generateCoordinates(Ship ship) {
 
-        boolean coordinatsAvalible = false;
+        boolean coordinateAvailable = false;
         Coordinates coordinates = null;
-        while (!coordinatsAvalible) {
+        while (!coordinateAvailable) {
 
             Random random = new Random();
             int X = random.nextInt(9);
@@ -43,7 +43,7 @@ public class Field {
             letter += X;
 
             coordinates = getCoordinates(letter, Y, direction, ship.getLength());
-            coordinatsAvalible = checkCoordinatesFree(coordinates);
+            coordinateAvailable = checkCoordinatesFree(coordinates);
         }
         addShipToCoordinates(coordinates.getCoordinates(), ship);
     }
@@ -95,8 +95,8 @@ public class Field {
             surroundingCoordinates.add(X + "" + Y);
             X++;
         }
-        Coordinates coordinates = new Coordinates(mainCoordinates,surroundingCoordinates);
-        return coordinates;
+
+        return new Coordinates(mainCoordinates, surroundingCoordinates);
     }
 
     private boolean checkCoordinatesFree(Coordinates coordinates) {

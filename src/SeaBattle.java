@@ -9,7 +9,6 @@ public class SeaBattle {
         this.playerCount = playerCount;
         createPlayers();
         play();
-
     }
 
     private void play() {

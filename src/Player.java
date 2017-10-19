@@ -18,15 +18,12 @@ public class Player {
     }
 
     public void showField() {
-
         playField.printField(false);
-
         if(Main.CHEAT)
         {
             System.out.println();
             playField.printField(true);
         }
-
     }
 
     public void shotAt(String coordinates) {
