@@ -29,7 +29,11 @@ public class Player {
 
     }
 
-    public void shotAt(String coordinates) {
+    public boolean coordinateIsShot(String coordinate) {
+        return playField.squareIsShot(coordinate);
+    }
+
+    public void shoot(String coordinates) {
         playField.shootAt(coordinates);
         checkIfLost();
     }

@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
 
     public static final Scanner IN = new Scanner(System.in);
-    public static final boolean CHEAT = false;
+    public static final boolean CHEAT = true;
 
     public static void main(String[] args) {
         System.out.println("Welkom bij het spelletje Zeeslag!");

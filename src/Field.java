@@ -131,6 +131,10 @@ public class Field {
         }
     }
 
+    public boolean squareIsShot(String coordinate) {
+        return fieldSquares.get(coordinate).isShotAt();
+    }
+
     public void shootAt(String coordinates) {
         Square square = fieldSquares.get(coordinates);
         if (square != null) {

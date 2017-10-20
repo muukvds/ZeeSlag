@@ -83,17 +83,73 @@ public class SeaBattle {
         playerEnemy.showField();
 
         //todo make sure you cant set invalid coordinates and give message if already shot
-        System.out.print(playerTurn.getName() + ", geef de locatie die je wilt beschieten:");
-        String coordinate = Main.IN.nextLine();
-        playerEnemy.shotAt(coordinate);
+
+        boolean validCoordinates = false;
+        String coordinate = "";
+
+        while (!validCoordinates) {
+            System.out.print(playerTurn.getName() + ", geef de locatie die je wilt beschieten:");
+            coordinate = Main.IN.nextLine();
+
+            if (checkValidCoordinate(coordinate)) {
+                validCoordinates = checkDoubleShot(coordinate, playerEnemy);
+            }
+        }
+        playerEnemy.shoot(coordinate);
 
         if (playerEnemy.isLost()) {
             playWon = true;
-            System.out.println("Bravo " + playerTurn.getName() + "+, je hebt alle schepen van je tegenstander tot zinken gebracht!");
+            System.out.println("Bravo " + playerTurn.getName() + ", je hebt alle schepen van je tegenstander tot zinken gebracht!");
             System.out.println("Je bent de trotse winnaar van dit spel!");
         }
 
         return playWon;
+    }
+
+    private Boolean checkDoubleShot(String coordinate, Player player) {
+        return player.coordinateIsShot(coordinate);
+    }
+
+    private Boolean checkValidCoordinate(String coordinate) {
+        return checkRow(coordinate.substring(1)) && checkColumn(coordinate.charAt(0));
+    }
+
+    private boolean checkRow(String row) {
+        boolean rowExists = false;
+
+        if (tryParseInt(row)) {
+            int r = Integer.parseInt(row);
+            if (r >= 1 && r <= 10) {
+                rowExists = true;
+            } else {
+                System.out.println("*** Rij " + row + " bestaat niet");
+            }
+        } else {
+
+            System.out.println("*** Rij " + row + " bestaat niet");
+        }
+        return rowExists;
+    }
+
+    private boolean tryParseInt(String value) {
+        try {
+            Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean checkColumn(char column) {
+        boolean columnExists = false;
+
+        if (column >= 'A' && column <= 'J') {
+            columnExists = true;
+        } else {
+            System.out.println("*** Kolom " + column + " bestaat niet");
+        }
+
+        return columnExists;
     }
 
     private void createPlayers() {
