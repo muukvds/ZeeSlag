@@ -82,8 +82,6 @@ public class SeaBattle {
 
         playerEnemy.showField();
 
-        //todo make sure you cant set invalid coordinates and give message if already shot
-
         boolean validCoordinates = false;
         String coordinate = "";
 
@@ -91,8 +89,14 @@ public class SeaBattle {
             System.out.print(playerTurn.getName() + ", geef de locatie die je wilt beschieten:");
             coordinate = Main.IN.nextLine();
 
-            if (checkValidCoordinate(coordinate)) {
-                validCoordinates = checkDoubleShot(coordinate, playerEnemy);
+            if (coordinate != null && !coordinate.equals("")) {
+                if (checkValidCoordinate(coordinate)) {
+                    if (!checkDoubleShot(coordinate, playerEnemy)) {
+                        validCoordinates = true;
+                    } else {
+                        System.out.println("*** Die locatie heb je al eerder beschoten ***");
+                    }
+                }
             }
         }
         playerEnemy.shoot(coordinate);
@@ -155,14 +159,37 @@ public class SeaBattle {
     private void createPlayers() {
         //create players
         if (playerCount == 1) {
-            System.out.println("Wat is de naam van de speler");
-            player1 = new Player(Main.IN.nextLine());
+            boolean rightName = false;
+            while (!rightName) {
+                System.out.println("Wat is de naam van de speler");
+                String name = Main.IN.nextLine();
+                if (!name.trim().equals("")) {
+                    player1 = new Player(name);
+                    rightName = true;
+                }
+
+            }
             player2 = new Player("PC");
         } else {
-            System.out.println("Wat is de naam van speler1");
-            player1 = new Player(Main.IN.nextLine());
-            System.out.println("Wat is de naam van speler2");
-            player2 = new Player(Main.IN.nextLine());
+            boolean rightName = false;
+            while (!rightName) {
+                System.out.println("Wat is de naam van de speler1");
+                String name = Main.IN.nextLine();
+                if (!name.trim().equals("")) {
+                    player1 = new Player(name);
+                    rightName = true;
+                }
+            }
+            rightName = false;
+            while (rightName) {
+                System.out.println("Wat is de naam van de speler2");
+                String name = Main.IN.nextLine();
+                if (!name.trim().equals("")) {
+                    player2 = new Player(name);
+                    rightName = true;
+                }
+
+            }
         }
     }
 }
