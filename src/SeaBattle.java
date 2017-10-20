@@ -181,7 +181,7 @@ public class SeaBattle {
                 }
             }
             rightName = false;
-            while (rightName) {
+            while (!rightName) {
                 System.out.println("Wat is de naam van de speler2");
                 String name = Main.IN.nextLine();
                 if (!name.trim().equals("")) {
