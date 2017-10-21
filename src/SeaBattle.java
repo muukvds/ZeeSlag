@@ -88,6 +88,7 @@ public class SeaBattle {
         String coordinate = Main.IN.nextLine();
         playerEnemy.shotAt(coordinate);
 
+
         if (playerEnemy.isLost()) {
             playWon = true;
             System.out.println("Bravo " + playerTurn.getName() + "+, je hebt alle schepen van je tegenstander tot zinken gebracht!");
