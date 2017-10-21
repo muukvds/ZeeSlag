@@ -1,5 +1,7 @@
 public class Player {
 
+    // todo add askCoordinats methode
+
     private Field playField;
     private String name;
     private boolean lost = false;

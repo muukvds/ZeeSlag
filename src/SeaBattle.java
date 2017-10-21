@@ -1,5 +1,7 @@
 public class SeaBattle {
 
+    // todo maks so that only gets player count, starts game, switshes player and play again.
+
     private Player player1;
     private Player player2;
     private boolean player1Started;
