@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class ComputerPlayer extends Player {
 
-    private String[][] enemyField = new String[10][10];
+    //add smarter AI to computerPlayer
 
     public ComputerPlayer(String name) {
         super(name);
@@ -12,7 +12,7 @@ public class ComputerPlayer extends Player {
 
     @Override
     public String getCoordinate() {
-        String coordinate = "A1";
+        String coordinate;
         System.out.print(this.getName() + ", is aan het denken...");
 
         try {

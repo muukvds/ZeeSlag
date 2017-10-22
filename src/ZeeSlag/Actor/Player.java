@@ -29,7 +29,7 @@ public abstract class Player {
         playField.addShipsToFieldAuto();
     }
 
-    public void setShipsMenual() {
+    public void setShipsManual() {
         playField.addShipsToFieldMenual();
     }
 

@@ -14,7 +14,7 @@ public class Game {
         player1.resetField();
         player2.resetField();
         if (playerCount == 1) {
-            player1.setShipsMenual();
+            player1.setShipsManual();
         } else {
             player1.setShipsAuto();
         }
