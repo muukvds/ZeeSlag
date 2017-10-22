@@ -49,11 +49,7 @@ public abstract class Player {
         }
     }
 
-    public boolean coordinateIsShot(String coordinate) {
-        return playField.squareIsShot(coordinate);
-    }
-
-    public void shoot(String coordinates) {
+    public void shotAt(String coordinates) {
         playField.shootAt(coordinates);
         checkIfLost();
     }

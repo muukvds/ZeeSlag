@@ -32,6 +32,10 @@ public class Ship {
         return length;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public boolean isSunk() {
         return sunk;
     }
