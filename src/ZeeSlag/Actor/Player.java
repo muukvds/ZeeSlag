@@ -1,7 +1,6 @@
 package ZeeSlag.Actor;
 
 import ZeeSlag.Field;
-import ZeeSlag.Game;
 import ZeeSlag.Main;
 
 public abstract class Player {
@@ -12,19 +11,29 @@ public abstract class Player {
     private Field playField;
     private String name;
     private boolean lost = false;
-    private Game game;
 
     public Player(String name) {
         this.name = name;
-        // makeField();
+        playField = new Field();
     }
 
+    public void resetField() {
+        playField = new Field();
+
+    }
     public String getName() {
         return name;
     }
 
-    public String getCoordinate() {
-        return "";
+    //generate or put coordinates to shoot at other player.
+    public abstract String getCoordinate();
+
+    public void setShipsAuto() {
+        playField.addShipsToFieldAuto();
+    }
+
+    public void setShipsMenual() {
+        playField.addShipsToFieldMenual();
     }
 
     public boolean isLost() {
@@ -37,8 +46,7 @@ public abstract class Player {
 
     public void showField() {
         playField.printField(false);
-        if(Main.CHEAT)
-        {
+        if (Main.CHEAT) {
             System.out.println();
             playField.printField(true);
         }
@@ -47,10 +55,6 @@ public abstract class Player {
     public void shotAt(String coordinates) {
         playField.shootAt(coordinates);
         checkIfLost();
-    }
-
-    public void makeField() {
-        playField = new Field();
     }
 
     private void checkIfLost() {

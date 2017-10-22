@@ -14,9 +14,17 @@ public class Match {
     // todo if shot at location player gives back true or false if is a alreaddy shot else other player gets an other shot
 
 
-    public Match(Player player1, Player player2) {
+    public Match(Player player1, Player player2, int playerCount) {
         this.player1 = player1;
         this.player2 = player2;
+        player1.resetField();
+        player2.resetField();
+        if (playerCount == 1) {
+            player1.setShipsMenual();
+        } else {
+            player1.setShipsAuto();
+        }
+        player2.setShipsAuto();
         play();
 
     }
@@ -24,31 +32,22 @@ public class Match {
     private void play() {
         while (!playWon) {
             playTurn(player1, player2);
-            //         if (!playWon) {
-            playTurn(player2, player1);
+            if (!playWon) {
+                playTurn(player2, player1);
+            }
         }
-        //    }
     }
-
 
     private void playTurn(Player playerTurn, Player playerEnemy) {
         //pays one turn for one player
         System.out.println(" *** Aan de beurt: " + playerTurn.getName() + " ***");
         System.out.println();
-
         playerEnemy.showField();
 
-        //todo make sure you cant set invalid coordinates and give message if already shot
-        System.out.print(playerTurn.getName() + ", geef de locatie die je wilt beschieten:");
-        String coordinate = Main.IN.nextLine();
-
-
         boolean validCoordinates = false;
-
-
+        String coordinate = "";
         while (!validCoordinates) {
-            System.out.print(playerTurn.getName() + ", geef de locatie die je wilt beschieten:");
-            coordinate = Main.IN.nextLine();
+            coordinate = playerTurn.getCoordinate();
 
             if (coordinate != null && !coordinate.equals("")) {
                 if (checkValidCoordinate(coordinate)) {
@@ -62,7 +61,6 @@ public class Match {
         }
         playerEnemy.shotAt(coordinate);
 
-
         if (playerEnemy.isLost()) {
             System.out.println("Bravo " + playerTurn.getName() + "+, je hebt alle schepen van je tegenstander tot zinken gebracht!");
             System.out.println("Je bent de trotse winnaar van dit spel!");
@@ -70,7 +68,6 @@ public class Match {
         }
 
     }
-
 
     private Boolean checkDoubleShot(String coordinate, Player player) {
         return player.coordinateIsShot(coordinate);
