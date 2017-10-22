@@ -1,3 +1,5 @@
+package ZeeSlag;
+
 import java.util.ArrayList;
 
 public class Coordinates {

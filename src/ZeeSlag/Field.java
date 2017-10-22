@@ -1,3 +1,5 @@
+package ZeeSlag;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -172,5 +174,9 @@ public class Field {
             }
         }
         return allShipsSunk;
+    }
+
+    public boolean squareIsShot(String coordinate) {
+        return fieldSquares.get(coordinate).isShotAt();
     }
 }

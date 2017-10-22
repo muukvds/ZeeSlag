@@ -1,3 +1,5 @@
+package ZeeSlag;
+
 public class Ship {
 
     private String type;
@@ -46,8 +48,7 @@ public class Ship {
         }
     }
 
-    private void printSunkenShip()
-    {
+    private void printSunkenShip() {
         System.out.println("Sterker nog, dit schip van het type "+this.type+" is nu gezonken!");
     }
 

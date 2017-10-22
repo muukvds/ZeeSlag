@@ -1,35 +1,44 @@
+package ZeeSlag;
+
+import ZeeSlag.Actor.ComputerPlayer;
+import ZeeSlag.Actor.HumanPlayer;
+import ZeeSlag.Actor.Player;
+
 public class SeaBattle {
 
     // todo maks so that only gets player count, starts game, switshes player and play again.
 
     private Player player1;
     private Player player2;
-    private boolean player1Started;
+    //    private boolean player1Started;
     private int playerCount;
 
     public SeaBattle(int playerCount) {
         this.playerCount = playerCount;
-        createPlayers();
+        getPlayers();
         play();
     }
 
     private void play() {
-        //if one player make 1 player
-        if (playerCount == 1) {
-            trainingGame();
-        } else if (playerCount == 2) {
-            player1Started = true;
-            game(player1, player2);
-        }
+        new Match(player1, player2);
+        playAgain();
+//
+//        if (playerCount == 1) {
+//            new ZeeSlag.Match(player1,player2);
+//            trainingGame();
+//        } else if (playerCount == 2) {
+//            player1Started = true;
+//            game(player1, player2);
+//        }
     }
 
-    private void trainingGame() {
-        boolean playWon = false;
-        while (!playWon) {
-            playWon = playTurn(player1, player2);
-        }
-        playAgain();
-    }
+//    private void trainingGame() {
+//        boolean playWon = false;
+//        while (!playWon) {
+//            playWon = playTurn(player1, player2);
+//        }
+//        playAgain();
+//    }
 
     private void playAgain() {
 
@@ -45,20 +54,22 @@ public class SeaBattle {
 
         if (answer.equals("ja")) {
 
-            player1 = new Player(player1.getName());
-            player2 = new Player(player2.getName());
+            player1 = new HumanPlayer(player1.getName());
+            player2 = new HumanPlayer(player2.getName());
 
-            if (playerCount == 1) {
-                trainingGame();
-            } else if (playerCount == 2) {
-                //make sure starting player switches if play again
-                if (player1Started) {
-                    game(player2, player1);
-                    player1Started = false;
-                } else {
-                    game(player1, player2);
-                }
-            }
+            play();
+
+//            if (playerCount == 1) {
+//                trainingGame();
+//            } else if (playerCount == 2) {
+//                //make sure starting player switches if play again
+//                if (player1Started) {
+//                    game(player2, player1);
+//                    player1Started = false;
+//                } else {
+//                    game(player1, player2);
+//                }
+//            }
         } else {
             System.out.println("Bedankt voor het spelen van het spelletje Zeeslag.\nHopelijk tot een volgende keer !");
         }
@@ -98,17 +109,17 @@ public class SeaBattle {
         return playWon;
     }
 
-    private void createPlayers() {
+    private void getPlayers() {
         //create players
         if (playerCount == 1) {
             System.out.println("Wat is de naam van de speler");
-            player1 = new Player(Main.IN.nextLine());
-            player2 = new Player("PC");
+            player1 = new HumanPlayer(Main.IN.nextLine());
+            player2 = new ComputerPlayer("PC");
         } else {
             System.out.println("Wat is de naam van speler1");
-            player1 = new Player(Main.IN.nextLine());
+            player1 = new HumanPlayer(Main.IN.nextLine());
             System.out.println("Wat is de naam van speler2");
-            player2 = new Player(Main.IN.nextLine());
+            player2 = new HumanPlayer(Main.IN.nextLine());
         }
     }
 }

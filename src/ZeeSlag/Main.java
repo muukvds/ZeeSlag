@@ -1,3 +1,5 @@
+package ZeeSlag;
+
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +12,7 @@ public class Main {
         System.out.println("Probeer de oorlogsbodems van je tegenstander tot zinken te brengen");
         System.out.println("voor hij jouw boten te pakken heeft genomen.");
 
-        //get players and start SeaBattle
+        //get players and start ZeeSlag.SeaBattle
         int playerCount = 1;
         boolean playersSet = false;
         while (!playersSet) {

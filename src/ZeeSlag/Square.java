@@ -1,3 +1,5 @@
+package ZeeSlag;
+
 public class Square {
 
     private Ship ship;
