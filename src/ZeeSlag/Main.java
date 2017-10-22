@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Welkom bij het spelletje Zeeslag!");
-        System.out.println("Probeer de oorlogsbodems van je tegenstander tot zinken te brengen");
+        System.out.println("Probeer de oorlogsbotten van je tegenstander tot zinken te brengen");
         System.out.println("voor hij jouw boten te pakken heeft genomen.");
 
         //get players and start ZeeSlag.SeaBattle

@@ -56,7 +56,7 @@ public class Game {
         playerEnemy.shotAt(coordinate);
 
         if (playerEnemy.isLost()) {
-            System.out.println("Bravo " + playerTurn.getName() + "+, je hebt alle schepen van je tegenstander tot zinken gebracht!");
+            System.out.println("Bravo " + playerTurn.getName() + ", je hebt alle schepen van je tegenstander tot zinken gebracht!");
             System.out.println("Je bent de trotse winnaar van dit spel!");
             playWon = true;
         }
