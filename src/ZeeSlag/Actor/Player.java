@@ -5,9 +5,6 @@ import ZeeSlag.Main;
 
 public abstract class Player {
 
-    // todo add askCoordinats methode
-    // todo make sub classes
-
     private Field playField;
     private String name;
     private boolean lost = false;

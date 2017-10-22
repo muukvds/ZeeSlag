@@ -20,7 +20,7 @@ public class SeaBattle {
     }
 
     private void play() {
-        new Match(player1, player2, playerCount);
+        new Game(player1, player2, playerCount);
         playAgain();
     }
 

@@ -2,19 +2,13 @@ package ZeeSlag;
 
 import ZeeSlag.Actor.Player;
 
-public class Match {
+public class Game {
 
     private Player player1;
     private Player player2;
     private boolean playWon = false;
-    // todo plays one match generete fields askes players for coordinates shot at other player coordenets,
-    // todo make subclass human player and pc player
-    // todo training game just becomes PvE
-    // todo make game class where players guesses locations
-    // todo if shot at location player gives back true or false if is a alreaddy shot else other player gets an other shot
 
-
-    public Match(Player player1, Player player2, int playerCount) {
+    public Game(Player player1, Player player2, int playerCount) {
         this.player1 = player1;
         this.player2 = player2;
         player1.resetField();
